@@ -1,0 +1,56 @@
+\chapter{Timing}
+\section{Timing models}
+\label{sub:models}
+%When discussing the phenomenon of time perception and estimation, there are multiple models that may be used as means to explain empirical results, structure reasoning, and mostly important to make predictions\cite{why_science}. Differently only in degree from other disciplines such as physics, the cognitive sciences have been, from the beginning, crowded with approaches spanning multiple levels of explanation\cite{cogsci_begs}.
+
+%In the case of Timing, different levels of explanation often intermingle in confusing ways, being discussed as equals\cite{buonomano_models}. This section has the purpose of delineating their domains, as well as specifying which parts of each are relevant to upcoming discussions.
+
+% By explanatory level
+%\subsection{Cognitive} % Pacemaker-accumulator / SET, LET 
+%\subsection{Biological} % SBF ?
+%\subsection{Computational} % Buonomano
+% keras-viz
+
+Mechanisms for measuring time are found in a variety of organisms, from humans to plants \cite{cashmore2003cryptochromes}. Initially bound by external rhythms (like circadian cycles), time estimation mechanisms were among the first competencies evolved in biological systems \cite{paranjpe2005evolution}, and are theorized as constitutive of many other cognitive modalities such as decision making and episodic memory \cite{maniadakis2014time}. Most behavior is inseparable from a temporal or rhythmic component \cite{buhusi2005makes}. From deciding to accelerate or break in a yellow light, through the simple motor organization of walking or running, to the complex dynamics of speech and musical performance, computational processes are temporally structured to correct execution \cite{bueti2014temporal}. %Perception is also inseparable from time: differently from the way percepts can be visual or auditory, they are always temporal, because time is an intrinsic dimension of 
+
+While organisms and their brains have to account for event durations in many timescales, from milliseconds to days, there is no single neural correlate able to account for them all \cite{buhusi2005makes, buhusi2016clocks, hardy2016neurocomputational, lewis2003distinct, mauk2004neural}. On the one hand, circadian rhythms depend on the suprachiasmatic nucleus (SCN), relying on slow protein cycles managed by transcriptional feedback loops \cite{buhusi2005makes}, and are important to regulate social and foraging behavior. In turn, the temporal structure of milliseconds relies on local circuits and their communication with the cerebellum \cite{ohmae2017cerebellar}, and is essential to fine motor control, such as playing an instrument or making a tool. In between, the time scale of seconds is central to planning, decision making and reasoning \cite{buhusi2005makes}, and is dependent on the Striatum \cite{mello2015scalable}, but independent of the SCN \cite{lewis2003interval}, and generally considered independent of the cerebellum \cite{harrington2004does}, although this is still disputed \cite{ohmae2017cerebellar, nichelli1996perceptual}.
+
+The scale of time intervals is widely used as distinction between experiments \cite{van20168, buhusi2005makes, hardy2016neurocomputational}, and commonly considered sufficient to characterize timing tasks \cite{buhusi2005makes}. Accordingly, the scale of seconds to minutes is called \textit{Interval Timing}, and its characteristics are assessed through several tasks \cite{lloyd2012neural,astrand2014comparison,brea2016prospective,mello2015scalable,gouvea2015striatal,kopec2018controlling,gershman2014dopamine,tiganj2016sequential,narayanan2009delay,cho2010differential}. While neural structures necessary for good performance differ among Interval Timing tasks \cite{paton2018neural}, there may exist a single neural mechanism rendering the time representation \cite{gibbon1977scalar}, or still further a single region for Interval Timing common to all of them \cite{mello2015scalable}. Some common properties detected across tasks support this idea of a single mechanism underpinning all timing in the order of seconds \cite{buhusi2005makes, gibbon1977scalar}. The scalar property is the fact that errors in the time estimation are  proportional to the interval being estimated \cite{oprisan2014all}, and it is present as a feature of many models \cite{gibbon1977scalar, oprisan2014all}. The dependence on dopamine to its correct performance is also characteristic of Interval Timing tasks \cite{kim2017optogenetic, meck2012gene} -- excess of dopamine causes underestimation of intervals \cite{cheng2016clock, pine2010dopamine}, while lack of dopamine leads to their overestimation \cite{drew2003effects}. 
+
+Alternatively to the central mechanism, if neural networks encode time as an intrinsic property, no such core would exist, as local circuits can tackle the learning process via state-dependent changes in network dynamics \cite{mauk2004neural, paton2018neural, buonomano1995temporal, motanis2018short}. 
+
+Somewhere between these two extremes of disperse local mechanisms versus central encoding, core regions may depend on further aspects beyond time scale alone. The notion that the size of an interval is sufficient to delineate the mechanism of state representation that will be used in a given timing task is not uncontested \cite{van20168}. Alternatively, other characteristics, like presence and continuity of movement, may facilitate the use of less expensive, automatic timing mechanisms, in opposition to attention based, cognitively controlled mechanisms \cite{lewis2003distinct}, even though increasing the size of an interval does require more flexible, cognitively controlled systems. Beyond the sensorimotor processing, the modality of the task (e.g. auditory vs visual) and number of intervals also affect temporal variability, changing Weber's constant \cite{merchant2008we}.
+
+\section{What is timing .:}
+Every behavior carries out through time, and in special any motor action has an execution time. To say that an animal is timing can't be simply because its behavior occurs in a certain time. It may be, according to Machado \cite{machado2009learning}, because the best predictor of its behavior is an interval of time. Since we believe there are neural causes for behavior, which certainly predict behavior better than time itself, this internal causes must be ignored by the definition. Thus it must follow that timing, as defined by Machado, concerns \textit{choice} and not decision. We have not found definitions of timing with respect to internal states, and parsimoniously propose the following one: 
+\begin{quote}
+We call timing-related activity all activity that is necessary for the performance of timing behavior, and not necessary for the most similar task with no timing.
+A timing task is 
+\end{quote}
+
+
+\section{Single-cell correlates of timing}
+Ramping neurons, overviewed in section \ref{sec:representation}, are one of the most studied neuronal correlates of timing \cite{}. They are frequently discussed in decision-making studies \cite{}, where their rate of increase correlates with 
+
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+% \todo[inline]{Comentário geral: Eu acho que nestes últimos parágrafos você misturou a questão da escala temporal com a questão do mecanismo central. Vale a pena pensarmos para a dissertação final separarmos melhor isto. Não é necessário mudar isto agora}
+
+\section{The anatomy of timing}
+\label{sec:anatomy}
+Independently of how dedicated or intrinsic are time representations, an important role is traced to cortico-striatal circuits \cite{lusk2016utilizing, buhusi2005makes, meck2008cortico}, in special to the mPFC \cite{buhusi2018inactivation} and the Striatum \cite{mello2015scalable}.
+
+The medial prefrontal cortex has been implicated in Timing in multiple tasks, such as Reaction Time \cite{narayanan2009delay}, Differential Reinforcement of Low rate \cite{cho2010differential} Temporal Bisection \cite{kim2009inactivation,tiganj2016sequential,kim2013neural}, and Peak Procedure \cite{buhusi2018inactivation}, by distinct methods such as lesions \cite{cho2010differential}, inactivation by muscimol \cite{buhusi2018inactivation, kim2009inactivation}, and optogenetic stimulation \cite{kim2017optogenetic}.
+
+% \subsection{Striatum}
+% \label{sec:str}
+The Striatum is a part of the basal ganglia, a series of nuclei that connect both to Cortex and Brainstem \cite{helie2015learning}. Its traditional roles relate to procedural learning, and to the initiation and termination of movements \cite{helie2015learning}. Deficiencies in the basal ganglia might cause diseases like Parkinson's, in which patients' erratic movements and tremblings show deregulation of movements' bounds by lack of dopamine \cite{buhusi2005makes}. An intact Striatum is required for performing many Interval Timing tasks \cite{mello2015scalable,gouvea2015striatal,cho2010differential}, such that it is the centerpiece of many timing models \cite{mello2015scalable, buhusi2005makes}.
+
+While much has been done in the context of timing performance, the mechanisms through which the correct behavior develops during learning are much less studied \cite{van20168}.

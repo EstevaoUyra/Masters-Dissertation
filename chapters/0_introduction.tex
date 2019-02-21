@@ -1,0 +1,52 @@
+%!TEX root = ../dissertation.tex
+
+% Direcionamento Representação -> Aprendizado supervisionado 
+\section{Data and Analysis}
+\label{sec:da}
+\subsection{Extracellular electrical activity}
+Neurons communicate via synapses, where action potentials in the pre-synaptic neuron trigger the release of signaling molecules (neurotransmitters), that it will directly or indirectly change the electrical potential of the post-synaptic neuron \cite{purves2014neuroscience}. This change is generally due to the activity of ion channels in the cell's membrane \cite{purves2014neuroscience}, and causes changes in the electrical potential between inside and outside the cell \cite{purves2014neuroscience}, creating dipoles and thus electric fields in the region.
+
+% Neurons fire action potentials when their membrane is depolarized enough to open voltage-dependent ion channels. 
+
+When measuring the electric potential from afar (e.g. using EEG in the scalp), only the summed activity of huge collectives of neurons acting in synchrony can be detected, and it is hard to pinpoint the origin of the signal \cite{buzsaki2012origin}. On the other hand, intracranial electrodes can be placed inside regions of interest in the brain, to detect changes in the electric field in the scale of millimeters and microsseconds \cite{}. The measured activity is then called the Local Field Potential (LFP), and while it contains information about the collective activity of aggregates of neurons \cite{buzsaki2012origin}, we can extract from it activity from individual neurons, in specific locations. To this end we use a process named spike-sorting \cite{rey2015past} that extracts the times of action potentials from the voltage timeseries of each electrode. 
+
+The firing of a neuron usually depends on unobservable activity and inner states, making the sequence of action potentials that are caused by some event to vary from trial to trial, even in cases where the neuron has a known tuning to the event \cite[p~7-8]{dayan2001theoretical}. To account for this lack of knowledge, neural activity is treated probabilistically, by switching from the spike times to the underlying firing rate \cite[p~9-11]{dayan2001theoretical}. The firing rate can be calculated by counting the spikes in sliding windows, using kernel convolutions with any kernel having both unit area and a given temporal resolution, an example of which is the gaussian kernel \cite[p~9-11]{dayan2001theoretical}.
+
+\subsection{Supervised learning}
+\label{sub:ml}
+The supervised learning problem is to generate a mapping from inputs $x$ to outputs $y$ \cite{murphy2012machine}, for example mapping from a subject's fMRI BOLD signal at V1 cortex ($x$) to the identity of an object the subject is seeing ($y$) \cite{dubois2015single}. In the forementioned case, $y$ is a \textit{categorical} variable, which means it has some number $C$ of classes, i.e. $y \in \{1,2,...,C\}$. This defines a \textit{classification} problem. 
+A related question may be, given activity on the visual cortex ($x$), to predict the orientation of a bar the subject is seeing ($y$) \cite{carlson2014orientation}. The \textit{target} variable (or \textit{response} variable) $y$ now has a continuum of values, and we name this a \textit{regression} problem.
+
+\subsection{Cost functions}
+The problem of supervised learning can be formalized as one of \textit{Function Approximation} \cite{murphy2012machine}. We want to use a dataset of input-output pairs $\{x_i, y_i\}$ to approximate an unknown function $F$ that takes each input into the corresponding output, i.e. $F(x_i) = y_i$. In other words, we want to find a function $F'$ such that new examples $x_n$ will be assigned to their correct value $y_n$. If the rate of right assignments is achieved above chance level, then we can say that the input $x$ is predictive of the output $y$, and that the variables contained in $x$ are informative about the target variable $y$. 
+
+In practice, we want to minimize the difference, or error, between the outputs of the approximated and unknown functions, for which we need some measure of error. Lets call $\hat{y}_i$ the estimated output for input $x_i$. In a regression, we may want to minimize the squared error $S$:
+$$ S = \sum_i [F(x_i)-F'(x_i)]^2 = \sum_i (y_i-\hat{y}_i)^2 $$
+Minimizing the squared error means we penalize larger differences harder, such that we need a hundred one-sized errors to equate a single ten-sized. The squared error rests on the (generally unspoken) assumption that noise is gaussian-distributed, whereas if we want to fit some data in which we have explicit knowledge of the noise distribution, it makes sense to design other penalizations. If noise is exponentially distributed, for example, it is better to minimize the absolute error $A$:
+% Encontrar fonte falando sobre ruido
+$$ A = \sum_i |y_i-\hat{y}_i| $$
+Both squared difference and absolute difference are, in this context, called \textit{loss functions} and measure the error for a single data point $l(y_i, \hat{y}_i)$. When the loss function is summed over the whole dataset, it gives raise to a \textit{Cost function}: Both $S$ and $A$ are cost functions. Because most machine learning algorithms are thought in the domain of \textit{optimization}, Cost function is frequently called referred as \textit{Objective function} \cite[p~79]{goodfellow2016deep}.
+
+In classification problems, classes may lack a canonical ordering, such that it isn't possible to calculate error in the same way as we do in regression. There are specific loss functions for classifications, such as the Cross-Entropy loss:
+%cross entropy. falar um pouco mais sobre as losses para classificação
+\begin{equation}
+    C = -\sum_{t=1}^{T}\delta(y-t)log(p(y=t|\hat{y}))
+\end{equation}
+Where $\delta$ stands for Kronecker's delta, which means it is 1 if y equals t and 0 otherwise, and $p(y=t|\hat{y})$ is the predicted probability of the example being of class t.
+
+Machine Learning algorithms differ not only in the choice of objectives, but also in their optimization methods. Common optimization methods include Quadratic Programming, Gradient Descent and Decision Trees, each used in its particular case. For example, Quadratic Programming is used in Support Vector Machines \cite{chang2011libsvm}, Gradient Descent with its many variants are used in Neural Networks \cite{ruder2016overview}, and decision tree methods are commonly applied with boosting \cite{chen2016xgboost}.
+
+\subsection{Model Evaluation and Data Partitioning}
+% The performance of a model can be unbiasedly estimated via cross-validation, and in this case can be said to give a lower bound on the mutual information $MI(y, x)$ \cite{}.
+
+To evaluate machine learning models, the dataset is generally separated into three partitions, called \textit{train}, \textit{test} and \textit{holdout}\footnote{Sometimes those are called called \textit{train}, \textit{validation} and \textit{test}, in which case the former test case is called validation, and holdout is called test. This latter nomenclature will not be used, to avoid confusion.}\cite{kohavi1995study}. In neuroscience it is common to ignore the holdout set \cite{bakhurin2017differential}, to take advantage of most of the dataset when training, and although this distinction is not important for classifiers for which we don't tune hyperparameters, it may present limitations to analysis of tuned classifiers. When there are many hyperparameters to tune, this tuning procedure approaches a fitting procedure, that is, the fitting of hyperparameters also gets prone to overfitting. Because the metric used to choose hyperparameters is the performance in the test set, it is biased to measure the final performance in the same test set. A holdout set is a subset of the data taken aside, and ignored during all steps before its purposeful use in the final evaluation of performance.
+
+To correctly evaluate the fit of a model, it is necessary to ensure the data used to measure the quality of fit had no part in the fitting procedure \cite{murphy2012machine, kohavi1995study}. However, to make good estimations of the model's performance in the data, its entirety must be part on the estimation. The cross-validation procedure covers both needs, by making multiple fits on different partitions of the data (the train set), evaluating each fit on the remainder (the test set).
+
+There are multiple methods to perform cross validation. The most well-known is called \textit{K-Fold cross validation}. K-Fold works by partitioning the data into K equal sized parts, each destined for one testing, and training the model in the remaining K-1 parts, for a total of K fit-and-evaluate procedures. As an example, a 10-fold cross validation would have 10 fits, each on 90\% of the data. It has the advantage of certainly using every sample of the data for evaluation, but the disadvantage of being rigid on the partition sizes. 
+
+When we must compare performance between datasets of different sizes (e.g. neural activity on the start of training vs after learning), we must ensure training sets are the same size in each, so as to not privilege either. Monte Carlo cross validation accomplishes this by making an arbitrary number of random subsets for training, each having a fixed size \cite{xu2001monte}. In this method a sample may appear in multiple train sets, but the expected number of appearances is always the same for all samples.
+
+\subsection{Packages and Usage}
+In the Python programming language, many classifiers and regressors are implemented in the scikit-learn package \cite{scikit-learn}, with a very user-friendly API, in which classifiers have default configurations for the hyperparameters, enabling fast prototyping of analysis.
+The optimization algorithms have very efficient implementations, and there are functions to help partition the data, to compare results, and to aid in visualization. 
