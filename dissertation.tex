@@ -23,11 +23,14 @@
 % \doublespacing
 
 % include each chapter...
-\setcounter{chapter}{0}  % start chapter numbering at 1
+\setcounter{chapter}{-1}  % start chapter numbering at 1
+\include{chapters/overview}
+
 \part{Grounds}
 \include{chapters/grounds/thebrain}
 \include{chapters/grounds/timing}
 \include{chapters/grounds/learning}
+\include{chapters/grounds/where_we_are}
 
 
 \part{Methodology}
@@ -36,12 +39,13 @@
 \include{chapters/methodology/data_acquisition}
 \include{chapters/methodology/data_processing}
 \include{chapters/methodology/analysis}
+\include{chapters/methodology/open_code}
 
 
 \part{Contribution}
 \include{chapters/contribution/animals_learn}
-\include{chapters/contribution/data_processing}
-\include{chapters/contribution/optimization}
+% \include{chapters/contribution/data_processing}
+% \include{chapters/contribution/optimization}
 \include{chapters/contribution/changes_through_learning}
 \include{chapters/contribution/discussion}
 \include{chapters/contribution/conclusion}
@@ -61,6 +65,8 @@
 % \bibliography{references}
 % \addcontentsline{toc}{chapter}{References}
 % \bibliographystyle{apalike2}
+\include{chapters/appendix_history}
+\include{chapters/appendix_ML}
 
 % \include{endmatter/colophon}
 

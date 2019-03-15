@@ -42,15 +42,16 @@
 
 % Add parts (by Estevao)
 % From https://tex.stackexchange.com/questions/129592/add-parts-to-the-table-of-contents
-\usepackage{tocloft}
+% \usepackage{tocloft}
 \newlength\mylen
 \renewcommand\thepart{\arabic{part}}
-\renewcommand\cftpartpresnum{Part~}
-\settowidth\mylen{\bfseries\cftpartpresnum\cftpartaftersnum}
-\addtolength\cftpartnumwidth{\mylen}
+% \renewcommand\cftpartpresnum{Part~}
+% \settowidth\mylen{\bfseries\cftpartpresnum\cftpartaftersnum}
+% \addtolength\cftpartnumwidth{\mylen}
 
 \usepackage{amsmath}
 \usepackage[]{algorithm2e}
+\usepackage{acro}
 
 % Block quote with compressed spacing
 \let\oldquote\quote
@@ -192,9 +193,10 @@
 \def\pdTwoSchool#1{\gdef\@pdTwoSchool{#1}}
 \def\pdTwoYear#1{\gdef\@pdTwoYear{#1}}
 % School name and location
-\university{Harvard University}
-\universitycity{Cambridge}
-\universitystate{Massachusetts}
+
+\university{Universidade Federal do ABC}
+\universitycity{São Bernardo}
+\universitystate{São Paulo}
 
 % School color found from university's graphic identity site:
 % http://isites.harvard.edu/icb/icb.do?keyword=k75408&pageid=icb.page392732
@@ -219,7 +221,8 @@
 	\copyrightpage
 	\abstractpage
     \contentspage
-	% \listoffigures % optional
+	\listoffigures % optional
+	\listofabbr
 	\dedicationpage
 	\acknowledgments
 }
@@ -249,7 +252,7 @@
 	\newpage
 	\thispagestyle{empty}
 	\vspace*{\fill}
-	\scshape \noindent \small \copyright \small 2014\hspace{3pt}-- \theauthor \\
+	\scshape \noindent \small \copyright \small 2019\hspace{3pt}-- \theauthor \\
 	\noindent all rights reserved.
 	\vspace*{\fill}
 	\newpage
@@ -292,6 +295,20 @@
 	\vspace*{\fill} \newpage \rm
     \cleardoublepage
 }
+
+\input{frontmatter/list_of_abbreviations}
+
+\newcommand{\listofabbr}{
+    \cleardoublepage
+    \phantomsection
+    \pdfbookmark{List of Abbreviations}{List of Abbreviations}
+	\newpage \thispagestyle{fancy} \vspace*{\fill}
+	\acsetup{list-style=tabular, only-used=true, sort=true}
+	\scshape \noindent \printacronyms[include-classes=abbrev,name=Abbreviations]
+	\vspace*{\fill} \newpage \rm
+    \cleardoublepage
+}
+
 
 \newcommand{\acknowledgments}{
 	\chapter*{Acknowledgments}
