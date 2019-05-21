@@ -1,3 +1,12 @@
+% Although we admit that the rat is bombarded by stimuli, we hold that his nervous system is surprisingly selective as to which of these stimuli it will let in at any given time. (...) Both strip-maps and comprehensive-maps may be either correct or incorrect in the sense that they may (or may not), when acted upon, lead successfully to the animal's goal. The differences between such strip maps and such comprehensive maps will appear only when the rat is later presented with some change within the given environment.
+% Tolman
+
+% Do not become the archivist of facts. Try to penetrate to the secret of their occurrence, persistently search for the laws which govern them.
+% Pavlov
+
+% The smallest group of facts, if properly classified and logically dealt with, will form a stone which has its proper place in the great building of knowledge, wholly independent of the individual workman who has shaped it
+% Karl Pearson
+
 \chapter{General Discussion}
 \label{chap:results}
 
@@ -12,7 +21,7 @@ Calculating the similarity matrix using Mahalanobis distances has some benefits 
 
 Decoding of activity is not specific to the classifier in question, and the differences in classifier performance are expected. The two better ranked classifiers were the Gradient Boosting Machines, the most widely applied classifiers in Kaggle competitions \cite{chen2016xgboost, ke2017lightgbm}. Logistic Regression results were similar enough to the Gradient Boosting, so that we chose to continue analysis using Logistic Regression, given that it is a much simpler and faster classifier.
 
-\section{Contribution}
+\section{Timing mechanisms depends not only on the task}
 When we compared the classification performances during naivety and proficiency phases, we found distinct evolution patterns in the mPFC and Striatum, with only the latter agreeing to our initial hypothesis. Experimental inactivation of the mPFC in this task, performed afterwards by our research group, has shown impairment only during learning, and not during performance of proficient animals (Chiuffa et al., in preparation). This finding supports the idea of an initial involvement of the mPFC that later decreases or vanishes. 
 
 While time is understood as an essential dimension for learning associations \cite{balsam2009temporal,kirkpatrick2016associative}, it may actually be either an attribute encoded in the associations \cite{molet2014timing} or a precursor to the learning of associations \cite{balsam2002timing}. Our original hypothesis is in line with the first case, as we expected time representations to develop during learning, and we found the activity in the Striatum to be consistent with this statement. On the other hand, our results for the mPFC are more closely in line with the precursor idea \cite{balsam2002timing}, because time representation seems to be present even when the performance at the task is poor. 
@@ -21,6 +30,7 @@ The Striatum has been already implicated in associative learning \cite{li2011dif
 
 The mPFC has been shown to encode only task-relevant information during learning \cite{kaplan2017role}, and in some studies it has been shown to decrease this encoding after learning \cite{schuck2015medial}, in agreement with our results. The importance of the cortex for learning but not for execution has been shown also in the motor cortex \cite{kawai2015motor}, and it motivates a model where the cortex "tutors" the Striatum, which is the responsible for performance after learning \cite{murray2017learning}. The opposite has been shown in other tasks \cite{pasupathy2005different}, where activity in the Striatum predicts response faster than the PFC, motivating a model where the basal ganglia is the one who provides the reinforcement signals to the cortex \cite{helie2015learning}. 
 
+\section{Observed patterns are consistent with dual processes}
 Studies on the corticostriatal role in decision making have already proposed the coexistence of two heterogeneous learning processes \cite{balleine1998goal, balleine2007role, smith2013dual}: one of them consists of an automatic/habitual Stimulus-Response learning, strengthened by reinforcers, while the other reflects a goal-directed/flexible Response-Outcome learning \cite{dickinson2015instrumental}. The neurobiological substrates of these two processes have been dissociated, wherein the goal-directed being dependent on dmPFC and dorsal Striatum, and the automatic being dependent on vmPFC and ventral Striatum \cite{dickinson2015instrumental}. Importantly, the relative contribution of these two forms of learning is dependent on the reinforcement schedule, in addition to the complexity of the task \cite{dickinson2015instrumental}. 
 
 Studies on the vmPFC's importance to learning, in the field of fear extinction, point out to its role in retaining learning \cite{phelps2004extinction}, while it seems necessary to performance in gambling tasks \cite{rogalsky2012risky}. Distinctly, dmPFC's role has been verified to bolster learning but not performance \cite{balleine2007still}, mirroring the mPFC results from our group.
@@ -42,6 +52,9 @@ Through the instrumental learning lens, it seems that learning in our DRRD task 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % It is common in the timing literature to expect the same brain regions to represent time in different tasks, given that the size of the interval is the same \cite{}. We expected, accordingly, to find results coherent to those in previous studies with the same interval size \cite{}, in which PFC activity was necessary to correct behavior. 
+
+
+% Science is far from a perfect instrument of knowledge. It's just the best we have - Carl Sagan
 \section{Limitations}
 It is common to 1) equate a classifier's performance with the presence of information in the neural activity, and even further to 2) believe that if information is present, then the animal has access to it  \cite{king2014characterizing}. 
 
@@ -69,3 +82,4 @@ Although our group has farmacological evidence that qualitatively agrees with th
 %The orbitofrontal cortex (OFC) or ventromedial frontal cortex (vmPFC) is one critical structure involved in emotion processing and decision making \cite{bechara2000emotion}. Damage to this structure may impair decision making both in social and personal domains, and is associated with impulsive and disinhibited behavior \cite{berlin2004impulsivity}.
 
 
+\section{Possible routes for assessing timing through learning}

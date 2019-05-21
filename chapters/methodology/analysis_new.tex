@@ -1,0 +1,14 @@
+\section{Quality of time representation}
+
+    We use "decodability" as a proxy for quality of time representation. That is: we predict elapsed time from the neural activity, and the correctness of predictions measures how much information about time is contained in the activity. 
+    
+    For each trial, we analyze the activity from 200ms after nosepoke onset until 300ms before nosepoke removal. Over this interval, the activity from each neuron simultaneously recorded was transformed into firing rate by convolving with a gaussian and then averaging inside bins of 100ms. This procedure resulted in one population firing rate vector per 100 ms time bin, to a total of 10 vectors for 1.5s trials, 25 vectors for 3s trials, and so on. Only the first 10 bins were used for the analysis of trials that had more. 
+    
+    Elapsed time was decoded from the population firing rates by either classification or regression. While classification requires a population vector to be labeled as one of the 10 time bins, regression treats the output as a continuous function, and can give values such as 450ms or 770ms. 
+
+    Classification was implemented using Linear Discriminant Analysis (LDA) while regression used Bayesian Ridge. While many other algorithms were tested and corresponding hyperparameters tuned, we've chosen to advance our analysis using simpler and untuned algorithms. 
+
+\section{Merging neurons}
+    
+\section{Bin shuffling}
+    Bin shuffling was based on methods from \cite{bakhurin2017differential}. It was used to break the temporal order of population activity, in such a way as to provide a null hypothesis for the neural activity prediction. 

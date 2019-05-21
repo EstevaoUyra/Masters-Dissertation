@@ -4,24 +4,48 @@
 \section{Instrumental learning}
      % alguma citação do Pavlov
     
-    A hundred years ago, Pavlov \cite{} pioneered the study of learning, and found associative principles that now define the 
+    A hundred years ago, Pavlov \cite{} pioneered the study of learning, and found associative principles that now define 
     
+    \subsection{Animals learn policies to maximize reward}
+        One way of framing the problem of reward maximization in computational terms is given by the mathematics of Markov Decision Processes (MDPs). In the MDP, the subject is called an Agent, and it is residing in an environment. The Agent can act through some predetermined set of actions, and changes its state by doing so. Depending on the state of the agent, actions can be rewarded.
+        
+        A MDP is given by a tuple (A, S, P, R, $\gamma$)
+        \begin{enumerate}
+            \item A is a set of actions
+            \item S is a set of states
+            \item P is a function that takes actions and states and gives states
+            \item R is a function that takes actions and states and gives reward
+            \item $\gamma$ is a discount rate
+        \end{enumerate}
+        
+        An agent has a policy $\pi : S \rightarrow A $ specifying which action to take in a given state.
+        There is a policy $\pi^*$ which maximizes expected reward.
+        
+        Translating into less mathematical terms, the agent acts in the environment in order to gain reward. Because it has no control over the reward, the best it can do is to act in ways that are commonly rewarded. It does so by using all information available, which is contained in the abstract "state". Consider a lever-press task guided by colored lights, blue for right lever and red for left lever. To maximize reward, the animal has to choose right if the color is blue, and left otherwise; the optimal action is conditioned in the state, that in this case is the color of the lever. 
+        
+        Now consider a more complex task, where the rewarded lever switches always after a "red light" trial. To maximize reward in this setting, the animal has to condition its behavior in 1. the current color of the light; 2. the last trial color of the light; 3. the last trial color-position relationship (which now may be the opposite). In this setting, the only dimension of the state which is observable by sensory input is the color of the light, while the rest must be stored internally, in the memory of the animal. Because the internal dimensions are unobservable in the environment, they are called "hidden states". If the animal can feature them in its state representation, it will be able to perform optimally.
+        
+        Given the limitations of state representation and action space, there are two families of algorithms for searching the optimal policy. The first approximates the functions P and R, which define how state transitions occur as effect of actions, and how rewards are given for each action in each state. This is the model-based family, where by using the transitions and expected rewards, the agent can derive a policy for every state. Alternatively, it is possible to approximate the optimal policy without reference to functions P and R, by directly updating the policy function after each reward, in what is called model-free learning.
+        
+        Animal and human subjects, when tackling an experimental task, can be understood as solving the respective MDP. For this purpose, they employ both model-free and model-based learning, via distinct neural systems, and the two forms of learning compete and cooperate to guide behavior \cite{kool2018competition}. 
+        
     \subsection{Dual systems guide behavior}
         There are two distinct forms of behavior that can be learned. Goal-directed behavior are those in which the animal knows the consequence of its action (belief), and this consequence is wanted (desire). In contrast, habitual behavior are those in which the animal is insensitive either to belief or desire, acting in a predetermined manner. Take the example of pressing a lever for food pellets: if the animal is not hungry (no more desire) or the lever stops yielding access to food pellets (no more belief), it will stop pressing if the behavior was goal directed, but continue pressing if it was habitual \cite{}. In sum, while goal-directed behavior is flexible to changes in rewards, habitual behavior is resistant to change \cite{}.
         
         As exemplified above, the same behavior may be goal-directed or habitual. Generally, over-training makes a behavior habitual, or more specifically: makes the habitual system the main controller of behavior \cite{}. Whereas the amount of training may change the main controller, this does not mean that the system is independent of the behavior: there are some hard to automate, and some hard to control cognitively \cite{}. Both systems work conjointly to guide behavior, and their relative contribution is dependent on the reinforcement schedule in addition to the complexity of the task \cite{dickinson2015instrumental}.
         
-        Beyond the belief-desire account, we can frame the dual systems in terms of associations: While Response-Outcome (RO) associations give rise to Goal-directed behavior, Stimulus-Response (SR) associations give rise to habitual behavior \cite{}. This associations are strengthened by reinforcers, in such a way that 
-        
+        Beyond the belief-desire account, we can frame the dual systems in terms of associations: While Response-Outcome (RO) associations give rise to Goal-directed behavior, Stimulus-Response (SR) associations give rise to habitual behavior \cite{}. One third option is in terms of reinforcement learning: model-based learning corresponds to goal-directed behavior while model-free learning is habitual. 
         Each system has its own neurobiological substrate: while the goal-directed is dependent on dmPFC and dSTR, the automatic is dependent on vmPFC and vSTR \cite{dickinson2015instrumental}. 
-    
-    \subsection{How dual systems }
-        
-Studies on the corticostriatal role in decision making have already proposed the coexistence of two heterogeneous learning processes \cite{balleine1998goal, balleine2007role, smith2013dual}: one of them consists of an automatic/habitual Stimulus-Response learning, strengthened by reinforcers, while the other reflects a goal-directed/flexible Response-Outcome learning \cite{dickinson2015instrumental}. The neurobiological substrates of these two processes have been dissociated, wherein the goal-directed being dependent on dmPFC and dorsal Striatum, and the automatic being dependent on vmPFC and ventral Striatum \cite{dickinson2015instrumental}.
 
-Studies on the vmPFC's importance to learning, in the field of fear extinction, point out to its role in retaining learning \cite{phelps2004extinction}, while it seems necessary to performance in gambling tasks \cite{rogalsky2012risky}. Distinctly, dmPFC's role has been verified to bolster learning but not performance \cite{balleine2007still}, mirroring the mPFC results from our group.
+    \subsection{Dual systems have distinct neural substrates}
+        Studies on the corticostriatal role in decision making have already proposed the coexistence of two heterogeneous learning processes \cite{balleine1998goal, balleine2007role, smith2013dual}: one of them consists of an automatic/habitual Stimulus-Response learning, strengthened by reinforcers, while the other reflects a goal-directed/flexible Response-Outcome learning \cite{dickinson2015instrumental}. The neurobiological substrates of these two processes have been dissociated, wherein the goal-directed is dependent on dmPFC and dorsal Striatum, and the automatic is dependent on vmPFC and ventral Striatum \cite{dickinson2015instrumental}.
+
+        Studies on the vmPFC's importance to learning, in the field of fear extinction, point out to its role in retaining learning \cite{phelps2004extinction}, while it seems necessary to performance in gambling tasks \cite{rogalsky2012risky}. Distinctly, dmPFC's role has been verified to bolster learning but not performance \cite{balleine2007still}, mirroring the mPFC results from our group.
 
 \section{Learning to Time}
     Most of the work in Timing has focused on well-trained subjects \cite{}, what limits the community ability to select models. We introduced in section \ref{sec:models} models that have explicit mechanisms for learning.
-
-    \subsection{}
+    
+% \section{Timing is young}
+% We want to explore the relationship between the area
+% Timing is a young field - compared to learning.
+%  we should engage with both

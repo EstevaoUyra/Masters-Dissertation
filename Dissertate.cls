@@ -48,6 +48,9 @@
 % \renewcommand\cftpartpresnum{Part~}
 % \settowidth\mylen{\bfseries\cftpartpresnum\cftpartaftersnum}
 % \addtolength\cftpartnumwidth{\mylen}
+\usepackage{etoolbox}
+\AtBeginEnvironment{quote}{\singlespacing\small}
+
 
 \usepackage{amsmath}
 \usepackage[]{algorithm2e}
