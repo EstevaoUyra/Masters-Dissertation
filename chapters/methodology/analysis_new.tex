@@ -11,4 +11,35 @@
 \section{Merging neurons}
     
 \section{Bin shuffling}
-    Bin shuffling was based on methods from \cite{bakhurin2017differential}. It was used to break the temporal order of population activity, in such a way as to provide a null hypothesis for the neural activity prediction. 
+    Bin shuffling was based on methods from \cite{bakhurin2017differential}. It was used to break the temporal order of population activity, in such a way as to provide a null hypothesis for the neural activity prediction. The population activity 
+    
+
+\section{Performance metrics}
+    Here we present the metrics used for assessing model performance. The metrics we use depends only on 1 - the final output (prediction) of the model, and 2 - the correct tag. The prediction for all examples is the vector $\hat{y}$, while the correct tag for all the examples is the vector $y$. $N$ is the dimensionality of the vectors. $\bar{x}$ is the sample average of a variable $\sum_{i=1}^N{\frac{x_i}{N}}$. $\sigma$ is the unbiased standard deviation, and $\sigma^2$ is the unbiased variance, $\sigma^2(x) = \sum_{i=1}^N{\frac{(x_i - \bar x)^2}{N - 1}}$.
+    
+    \subsection{Explained variance}
+        Explained variance measures how much the variance in the data decreases when taking the model into consideration. Specifically, it compares the amount of variance in the residuals with the variance in the original data. 
+        $$ \text{explained variance}(y, \hat{y}) = 1 - \frac{\sigma^2(y - \hat{y})}{\sigma^2(y)}$$
+    
+    \subsection{Pearson's r}
+        Pearson's r is a measure of linear correlation, calculated by normalizing the linear covariance of two variables by their respective variances. 
+        
+        $$
+        \text{Pearson's r}(y, \hat{y}) = 
+        \frac{1}{n-1}\frac{\sum{(y - \bar{y})(\hat{y} - \bar{\hat{y}})}}
+             {\sigma(y)\sigma{(\hat{y})}}
+        $$
+        
+        
+    
+    \subsection{Modified accuracy}
+        We modified accuracy to enable its use in regression. Generally, accuracy is ill-defined for continuous targets, since it has no measure of distance. Our modified accuracy consists of rounding the output to its closest value before measuring the accuracy in the conventional sense. The notation $[x]_y$ is the nearest value in $y$ for each value in $x$. $\delta(x_1, x_2)$ is the Kronecker's delta, taking the value $1$ when $x_1 = x_2$ and $0$ otherwise. 
+        
+        $$
+        \text{accuracy}(y, \hat{y}) = \frac{1}{N}\sum_{i=1}^{N}{\delta(y_i, [\hat{y}_i]_y)}
+        $$
+        
+        
+        
+        
+        

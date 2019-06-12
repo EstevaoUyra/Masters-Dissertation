@@ -1,45 +1,36 @@
 \chapter{Time is represented in the neural activity}
-To measure whether there is a representation for time in the activity, we compare decoding performance in the original data versus in bootstrapped data. By shuffling the time bins of each trial, we test the hypothesis that consistent activity across trials is what guides decoding performance.
+\label{chap:time_is_represented}
+
+Here we measured whether there is a representation for time in neural activity, based on single-unit recordings on rats' Pre Frontal Cortex. For such, we compared decoding performance in the original data versus in bootstrapped data, which is created by shuffling the time bins of the original data in each trial. The fundamental distinction between shuffled data and the original is that the temporal order has been disrupted. If decoding performance on shuffled data is equal to the original, then we can infer that the temporal ordering of activity is not essential for decoding, and consequently it is not time that is being decoded. Alternatively, if decoding performance is significantly better in the original activity, then time-ordering is driving decoding performance. 
+
+The neural population activity is averaged in bins of 100ms each, from the nosepoke onset (0 - 100 ms) until 1500ms, for a total of 15 population activity vectors per trial. Each bin is tagged with its starting time. In classification the tag is treated as a label, and the problem is treated as multiclass classification: each population vector is classified as one of the 15 possible labels (0, 100, 200, ..., 1400). Alternatively, in regression the tag is treated as a continuous variable, and population vectors are mapped to real values, that can be intermediate values between the bins (e.g. 150). Moreover, in both cases we measure the performance using the explained variance (see \ref{sub:expvar})
 
 \section{We can predict elapsed time using the instantaneous firing rate}
-    \begin{table}[]
+    \begin{figure}
         \centering
-        \begin{tabular}{l|rr|rr}
-            \hline
-            model & \multicolumn{2}{l}{Regression - Bayesian Ridge} & \multicolumn{2}{l}{Classification - LDA} \\
-            metric & Explained variance & Pearson's r & Explained variance & Pearson's r \\
-            \hline
-            bootstrap min  &             -0.000 &      -0.041 &             -1.174 &      -0.036 \\
-            bootstrap .025  &             -0.000 &      -0.019 &             -1.069 &      -0.015 \\
-            bootstrap .975 &              0.000 &       0.019 &             -0.922 &       0.015 \\
-            bootstrap max  &              0.001 &       0.045 &             -0.830 &       0.036 \\
-            \hline
-            true min  &              0.279 &       0.540 &             -0.186 &       0.453 \\
-            true mean &              0.292 &       0.549 &             -0.163 &       0.463 \\
-            \hline
-        \end{tabular}
-        \caption{Bootstrapped versus true decoding performance. The table compares decoding of neural activity when the data is shuffled versus the original. This is shown via comparison of two metrics, Explained variance and Pearson's r, for the two decoding approaches of classification and regression. The upper part of the table shows relevant summary statistics for the bootstrapped data's distribution of results, calculated over 1000 repetitions. The bottom shows relevant statistcs for the true data, calculated over 100 repetitions. The minimum value of performance for the true data is higher than the biggest value for the bootstrapped.}
-        \label{tab:bootstrap_time_representation}
-    \end{table}
+        \includegraphics[width=\textwidth]{figures/bootstrap_distribution.png}
+        \caption[Comparison between classifier predictions for time-ordered versus time-shuffled population activity]{Comparison between classifier predictions for time-ordered versus time-shuffled population activity. The figure shows the distribution of decoding performances for two decoding methods, in each case comparing with performance in the time-shuffled activity. Either using classification or regression, the population activity differs considerably from the bootstrap, having no overlap.}
+        \label{fig:bootstrap_distribution}
+    \end{figure}
     
-    In table \ref{tab:bootstrap_time_representation} we can see that the decoding value for the true data is far from the bootstrapping values. This evidences that the instantaneous firing rate is significantly predictive of the elapsed time. Distinctions between decoding approaches and between the metrics are more thoroughly discussed in the chapter \ref{chap:metrics}.here we note that the divergence from bootstrapped data is robust to whether we use regression or classification to decode time from the activity. 
+    In figure \ref{fig:bootstrap_distribution} we compare the distribution of decoding performance between shuffled and time-ordered population activities. The distributions are completely separated, giving a p-value of approximately 0 (T-values 974 and 486 for regression and classification) in a t-test. The divergence from bootstrapped data is robust to whether we use regression or classification, as in both cases the distributions have no overlap. The choice of metric also does not change results, in the cases of Pearson's r and accuracy (not shown). 
     
     \begin{figure}[ht]
         \centering
-        \includegraphics{figures/decoding_kde_bootstrap_vs_true_31.png}
-        \caption[Comparison of prediction distributions when data is shuffled]{Comparison of prediction distributions when data is shuffled. Lines refer to the type of algorithm used to assess activity - regression and classification, while columns refer to the type of data - shuffled or not. Darker blues indicate higher density of points. For a given elapsed time, the vertical upon it is the distribution of all predictions calculated over neural activity extracted at that time.}
+        \includegraphics{figures/clf_reg_kde_simple.png}
+        \caption[Distribution of predictions show structure]{Distribution of predictions show structure. Figures show two types of algorithm used to assess activity - regression and classification. Darker blues indicate higher density of points. For a given elapsed time, the vertical upon it is the distribution of all predictions calculated over neural activity extracted at that time.}
         \label{fig:decoding_kde_boot}
     \end{figure}
     
-    To further assess our decoding results, we look into the distribution of predictions according to the elapsed time of the activity. We can see the full distribution by kernel-density-estimation in figure \ref{fig:decoding_kde_boot}, and a simpler version with mean and variance in figure \ref{fig:decoding_line_boot}. When decoding shuffled data, the regression cannot find information and always predicts the mean, because this minimizes the expected root squared error. This appears in either plot as a single line located at the mean. Classification has no such strategy, because to the classifier there is no "error size" with respect to the predicted class: predicting a .2 and predicting a .9 are equal-sized errors to an example labeled .3. The mean prediction for each time bin, shown in \ref{fig:decoding_line_boot} is located around in the mean value, and distinguishes from the regression results mainly by the huge error bounds. In figure \ref{fig:decoding_kde_boot}, the prediction randomness caused by shuffling is revealed by the multiple density blobs haphazardly located. By repeating the analysis (not shown here), although the other subplots keep the same appearance, the shuffled classification changes considerably, with the blobs in other locations.
+    To further assess our decoding results, we look into the distribution of predictions according to the elapsed time of the activity. To this end, we follow a k-fold cross-prediction approach: we separate the trials into 20 groups, or \textit{folds}, evaluating predictions for each fold after training in the 19 other folds. The folds are approximately the same size, with each trial giving rise to 15 predictions, one for each bin of population activity.
+    
+    We can see the full distribution by kernel-density-estimation in figure \ref{fig:decoding_kde_boot}, and a simpler version with mean and variance in figure \ref{fig:decoding_line_boot}. We can see in \ref{fig:decoding_line_boot} that the mean prediction has a positive inclination, showing that activity from later in the trial is predicted in average with higher values. While this is seen both in classification and regression, they have distinct patterns of errors, showed in \ref{fig:decoding_kde_boot}, with regression tending towards the mean values while classification tends towards the borders. Anyhow, the positive inclination is indicative of the presence of information in the neural activity, and is consistent with the positive evaluation of metrics shown in \ref{fig:bootstrap_distribution}.
     
     \begin{figure}[ht]
         \centering
-        \includegraphics{figures/decoding_line_bootstrap_vs_true_31.png}
-        \caption[Summary of prediction distributions comparing when data is shuffled]{Summary of prediction distributions comparing when data is shuffled. Lines refer to the type of algorithm used to assess activity - regression and classification, while columns refer to the type of data - shuffled or not. The darker line is the average decoded value for all data points extracted from a given Elapsed Time. The bands represent the standard deviation around that average.}
+        \includegraphics{figures/clf_reg_mean_simple.png}
+        \caption[Summary of prediction distributions have positive inclination]{Summary of prediction distributions have positive inclination. Figures show two types of algorithm used to assess activity - regression and classification. The darker line is the average decoded value for all data points extracted from a given Elapsed Time. The bands represent the standard deviation around that average. Since the distributions are not necessarily gaussian, as can be seen in figure \ref{fig:decoding_kde_boot}, the mean and standard deviation are not a full description. Nevertheless, the positive inclination shows there is a tendency to decode bigger times for neural activity coming from bigger elapsed times in the trial.}
         \label{fig:decoding_line_boot}
     \end{figure}
-    
-    With respect to the true data, we can see in \ref{fig:decoding_line_boot} that the mean prediction has a positive inclination, showing that activity from later in the trial is predicted in average with higher values. While this is seen both in classification and regression, they have distinct patterns of errors, showed in \ref{fig:decoding_kde_boot}, with regression tending towards the mean values while classification tends towards the borders. Anyhow, the positive inclination is indicative of the presence of information in the neural activity, and is consistent with the positive metrics shown in \ref{tab:bootstrap_time_representation}.
 
 % \section{There is time-warping consistent with timing behavior}

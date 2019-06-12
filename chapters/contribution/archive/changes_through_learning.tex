@@ -20,3 +20,23 @@ When we look instead to final scores of classification performance, measured by 
 %     \caption[Activity in the baseline predicts behavior]{Activity in the baseline predicts behavior. At the top, the measure of Cohen's D for each neuron, at the point of maximum difference in the baseline. At botton, an example neuron with different activity, with 95\% confidence interval around the mean.}
 %     \label{fig:Dcohen}
 % \end{figure}
+
+
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tabular}{cc}
+    {\Large \qquad First Session}& {\Large \qquad Second Session}    \\\\
+    
+    \multicolumn{2}{1}{{\large Striatum}}\\\\
+    \includegraphics[width=0.45\textwidth]{figures/striatum_kde_bootstrap_vs_true_day1.png}    &  
+    \includegraphics[width=0.45\textwidth]{figures/striatum_kde_bootstrap_vs_true_day2.png}    \\\\
+    
+    \multicolumn{2}{1}{{\large medial Pre Frontal Cortex}}\\\\
+    \includegraphics[width=0.45\textwidth]{figures/mpfc_kde_bootstrap_vs_true_day1.png}    &  
+    \includegraphics[width=0.45\textwidth]{figures/mpfc_kde_bootstrap_vs_true_day2.png}\\
+    \end{tabular}
+    \caption[Prediction density plots in the first vs second sessions]{Darker blues indicate higher density of points. For a given elapsed time, the vertical upon it is the distribution of all predictions calculated over neural activity extracted at that time.}
+    \label{fig:evolution_representation_density}
+\end{figure}

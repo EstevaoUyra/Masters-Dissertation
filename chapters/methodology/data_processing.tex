@@ -21,11 +21,15 @@
     % We used three values for the standard deviation (20, 50 and 100), to assess the robustness of our analysis with respect to this parameter. To test the effects of different padding choices in estimating the firing rate, we compared the spike count (not smoothed) in 100ms bins with the firing rates measured using a gaussian kernel with standard deviation of 100ms, calculating the borders with either the default zero padding or a symmetric padding. At last we used the
     %, 50 and 20 ms. While the windows of 100 and 50 can be used for computationally expensive analysis, The window of 20ms is stored for visualization purposes.
 
-\subsection{Selection}
-    Engagement was assessed through the inter trial interval (ITI) of the animals. Since a single session can last more than a thousand trials, we expected that at some point the animal gets tired, in such a way that it may cease to engage in new trials immediately after the previous ones. We compared this interval between subsequent trials via visual inspection, and generously removed trials to be sure we wouldn't pollute posterior analysis with these unengaged trials.
+\subsection{Disengagement exclusion}
+    Engagement was assessed through the inter trial interval (ITI) of the animals. Since a single session can last more than a thousand trials, we expected that at some point the animal gets tired, in such a way that it may cease to engage in new trials immediately after the previous ones. We calculated the sum of ITIs using a moving window of 5 trials. 
+    
+    We compared this interval between subsequent trials via visual inspection, and generously removed trials to be sure we wouldn't pollute posterior analysis with these unengaged trials.
     
     Unless otherwise specified, we selected all correct trials (t > 1.5s) for our analysis, after the removal of trials without engagement. 
-    As typically done in the literature, we merged cells from all rats in most analysis, but we also performed these for each rat, to assess the consistency of our results. Each animal's first correct trial formed the first trial with increased number of (merged) cells, their second correct trial formed the second merged, and so on.
+    
+\subsection{Neuron pool}
+    As typically done in the literature \cite{}, we merged cells from all rats in most analysis, but we also performed these for each rat, to assess the consistency of our results. Each animal's first correct trial formed the first trial with increased number of (merged) cells, their second correct trial formed the second merged, and so on.
     
 \subsection{Precaching}
     Because smoothing the data is computationally expensive, we save smoothed versions of the data to enable easier exploration and experimentation. Selection is very fast and thus we always make it during analysis time.

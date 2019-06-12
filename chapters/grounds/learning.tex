@@ -4,30 +4,6 @@
 \section{Instrumental learning}
      % alguma citação do Pavlov
     
-    A hundred years ago, Pavlov \cite{} pioneered the study of learning, and found associative principles that now define 
-    
-    \subsection{Animals learn policies to maximize reward}
-        One way of framing the problem of reward maximization in computational terms is given by the mathematics of Markov Decision Processes (MDPs). In the MDP, the subject is called an Agent, and it is residing in an environment. The Agent can act through some predetermined set of actions, and changes its state by doing so. Depending on the state of the agent, actions can be rewarded.
-        
-        A MDP is given by a tuple (A, S, P, R, $\gamma$)
-        \begin{enumerate}
-            \item A is a set of actions
-            \item S is a set of states
-            \item P is a function that takes actions and states and gives states
-            \item R is a function that takes actions and states and gives reward
-            \item $\gamma$ is a discount rate
-        \end{enumerate}
-        
-        An agent has a policy $\pi : S \rightarrow A $ specifying which action to take in a given state.
-        There is a policy $\pi^*$ which maximizes expected reward.
-        
-        Translating into less mathematical terms, the agent acts in the environment in order to gain reward. Because it has no control over the reward, the best it can do is to act in ways that are commonly rewarded. It does so by using all information available, which is contained in the abstract "state". Consider a lever-press task guided by colored lights, blue for right lever and red for left lever. To maximize reward, the animal has to choose right if the color is blue, and left otherwise; the optimal action is conditioned in the state, that in this case is the color of the lever. 
-        
-        Now consider a more complex task, where the rewarded lever switches always after a "red light" trial. To maximize reward in this setting, the animal has to condition its behavior in 1. the current color of the light; 2. the last trial color of the light; 3. the last trial color-position relationship (which now may be the opposite). In this setting, the only dimension of the state which is observable by sensory input is the color of the light, while the rest must be stored internally, in the memory of the animal. Because the internal dimensions are unobservable in the environment, they are called "hidden states". If the animal can feature them in its state representation, it will be able to perform optimally.
-        
-        Given the limitations of state representation and action space, there are two families of algorithms for searching the optimal policy. The first approximates the functions P and R, which define how state transitions occur as effect of actions, and how rewards are given for each action in each state. This is the model-based family, where by using the transitions and expected rewards, the agent can derive a policy for every state. Alternatively, it is possible to approximate the optimal policy without reference to functions P and R, by directly updating the policy function after each reward, in what is called model-free learning.
-        
-        Animal and human subjects, when tackling an experimental task, can be understood as solving the respective MDP. For this purpose, they employ both model-free and model-based learning, via distinct neural systems, and the two forms of learning compete and cooperate to guide behavior \cite{kool2018competition}. 
         
     \subsection{Dual systems guide behavior}
         There are two distinct forms of behavior that can be learned. Goal-directed behavior are those in which the animal knows the consequence of its action (belief), and this consequence is wanted (desire). In contrast, habitual behavior are those in which the animal is insensitive either to belief or desire, acting in a predetermined manner. Take the example of pressing a lever for food pellets: if the animal is not hungry (no more desire) or the lever stops yielding access to food pellets (no more belief), it will stop pressing if the behavior was goal directed, but continue pressing if it was habitual \cite{}. In sum, while goal-directed behavior is flexible to changes in rewards, habitual behavior is resistant to change \cite{}.

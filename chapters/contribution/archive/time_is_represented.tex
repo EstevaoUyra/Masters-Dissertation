@@ -1,0 +1,19 @@
+    \begin{table}[]
+        \centering
+        \begin{tabular}{l|rr|rr}
+            \hline
+            model & \multicolumn{2}{l}{Regression - Bayesian Ridge} & \multicolumn{2}{l}{Classification - LDA} \\
+            metric & Explained variance & Pearson's r & Explained variance & Pearson's r \\
+            \hline
+            bootstrap min  &             -0.000 &      -0.041 &             -1.174 &      -0.036 \\
+            bootstrap .025  &             -0.000 &      -0.019 &             -1.069 &      -0.015 \\
+            bootstrap .975 &              0.000 &       0.019 &             -0.922 &       0.015 \\
+            bootstrap max  &              0.001 &       0.045 &             -0.830 &       0.036 \\
+            \hline
+            true min  &              0.279 &       0.540 &             -0.186 &       0.453 \\
+            true mean &              0.292 &       0.549 &             -0.163 &       0.463 \\
+            \hline
+        \end{tabular}
+        \caption{Bootstrapped versus true decoding performance. The table compares decoding of neural activity when the data is shuffled versus the original. This is shown via comparison of two metrics, Explained variance and Pearson's r, for the two decoding approaches of classification and regression. The upper part of the table shows relevant summary statistics for the bootstrapped data's distribution of results, calculated over 1000 repetitions. The bottom shows relevant statistcs for the true data, calculated over 100 repetitions. The minimum value of performance for the true data is higher than the biggest value for the bootstrapped.}
+        \label{tab:bootstrap_time_representation}
+    \end{table}

@@ -1,7 +1,7 @@
 \chapter{Timing}
 \section{What is timing .:}
-    Every behavior carries out through time, and in special any motor action has an execution time, but the study of timing is not so generic: to say that an animal is timing isn't simply because its behavior occurs in a certain time. Machado \cite{machado2009learning} proposes the animal is timing when "the best predictor of its behavior is an interval of time", a definition that narrows the domain, but emphasizes the observer in despite of the computation being performed. In addition, there are well-established timing processes that fall short of this definition by being parts of some bigger computation and not directly effectors of behavior. Although there is no consensus on a precise definition of what is timing in a computational sense, the notions of "telling time" \cite{}, and structuring events and processes with respect to time \cite{} are enough to characterize a wide range of processes.
     
+    % Colocar definição do aprendizado de reforço
     Mechanisms for measuring time are found in a variety of organisms, from humans to plants \cite{cashmore2003cryptochromes}. Initially bound by external rhythms (like circadian cycles), time estimation mechanisms were among the first competencies evolved in biological systems \cite{paranjpe2005evolution}, and are constitutive of many other cognitive modalities such as decision making and episodic memory \cite{maniadakis2014time}. Most behavior is inseparable from a temporal or rhythmic component \cite{buhusi2005makes}. From deciding to accelerate or break in a yellow light, through the simple motor organization of walking or running, to the complex dynamics of speech and musical performance, computational processes are temporally structured to correct execution \cite{bueti2014temporal}. 
     
     While organisms and their brains have to account for event durations in many timescales, from milliseconds to days, there is no single neural correlate able to account for them all \cite{buhusi2005makes, buhusi2016clocks, hardy2016neurocomputational, lewis2003distinct, mauk2004neural}. On the one hand, circadian rhythms depend on the suprachiasmatic nucleus (SCN), relying on slow protein cycles managed by transcriptional feedback loops \cite{buhusi2005makes}, and are important to regulate social and foraging behavior. In turn, the temporal structure of milliseconds relies on local circuits and their communication with the cerebellum \cite{ohmae2017cerebellar}, and is essential to fine motor control, such as playing an instrument or making a tool. In between, the time scale of seconds is central to planning, decision making and reasoning \cite{buhusi2005makes}, and is dependent on the Striatum \cite{mello2015scalable}, but independent of the SCN \cite{lewis2003interval}, and cerebellum \cite{harrington2004does}. The present work focuses in the scale of seconds, named as \textit{interval timing}.
@@ -9,12 +9,11 @@
     The scale of seconds is less well-understood than its counterparts, but there is much experimental evidence about regions and mechanisms involved in its estimation. Evidence comes from a variety of sources, from psychophysics \cite{ohmae2017cerebellar} and pharmacology \cite{pine2010dopamine, meck2012gene, drew2003effects, cheng2016clock, ludvig2008stimulus} to lesion studies \cite{} and electrophysiology \cite{bakhurin2017differential}. From psychophysics, we know that time estimation obeys Weber's law \cite{gibbon1977scalar}, meaning that the error is proportional to the mean, and thus time-scale invariant; From pharmacology, we know that dopamine agonists shorten time estimates while antagonists elongate them \cite{}; Lesion studies show some regions necessary for timing behavior \cite{};
     Lastly, electrophysiology shows neural correlates of timing \cite{}.
     
-    In the rest of this chapter we will present two complementary ways of characterizing 
-    
+    % In the rest of this chapter we will present two complementary ways of characterizing
     
 \section{Timing models}
 \label{sec:models}
-    The Scalar Expectancy Theory (SET) proposes a model, schematized in figure \ref{fig:set_schema} where timing is achieved by a counter, that accumulates pulses from a pacemaker and compares them with reference memories \cite{}. Despite the simplicity, the model fits psychophysical data from the most common timing tasks \cite{} correctly predicting time-scale invariance, and can explain the effect of dopamine as simply an accelerator of the pacemaker. 
+    The Scalar Expectancy Theory (SET) proposes a model, schematized in figure \ref{fig:set_schema} where timing is achieved by a counter, that accumulates pulses from a pacemaker and compares them with reference memories \cite{}. Despite the simplicity, the model fits psychophysical data from the most common timing tasks \cite{} correctly predicting time-scale invariance, and can explain the effect of dopamine as simply an accelerator of the pacemaker.
     
     \begin{figure}
         \centering
@@ -23,7 +22,7 @@
         \label{fig:set_schema}
     \end{figure}
     
-    The SET model is by far the most popular timing model \cite{}, having retained attention from the community for more than 30 years. Even though it has limitations and fails to predict some results \cite{machado2009learning}, its simplicity seems to compensate for it. There are too many timing models to consider an exhaustive listing \cite{}, and we introduce those that best foster our examination across levels of analysis. 
+    The SET model is by far the most popular timing model \cite{buhusi2005makes}, having retained attention from the community for more than 30 years. Even though it has limitations and fails to predict some results \cite{machado2009learning}, its simplicity seems to compensate for it. There are too many timing models to consider an exhaustive listing \cite{}, and we introduce those that best foster our examination across levels of analysis. 
     
     In terms of algorithm, it has been shown that Drift Diffusion Models (DDMs) are a more general framework that encompasses the SET, LET, and other common models \cite{balci2016decision}. DDMs are evidence-accumulation models, that compare the evidence among two alternatives in a noisy setting, and are optimal in the sense they can reach some predetermined accuracy in the least amount of time. They have the interesting uptick of being commonly used to study decision making, and thus frame timing in terms of decision. 
     
@@ -34,6 +33,7 @@
     \subsection{Intrinsic vs Dedicated}
         %Ler
         Among models of timing, there is an ongoing discussion on the intrinsicness of the processes involved in timing. While much of the discussion around time processing has 
+        
 % Converging data supports intrinsic models
 \section{The taxonomy of timing}
 \label{sub:taxonomy}
@@ -48,31 +48,8 @@
         \item \textit{Motor vs Sensory timing}.
         \item \textit{Interval vs Pattern timing}.
     \end{enumerate}
-    
 
-    In a meta-analysis of fMRI timing studies, Lewis and Miall \cite{lewis2003distinct} proposed three dimensions that, in tandem, could split tasks into two groups with distinct neural substrates. The first group is Automatic Timing, dependent on motor and sensory circuitry such as \ac{m1}, \ac{s1} and \ac{sma}, and the second is Cognitively Controlled Timing, dependent on regions of the \ac{pfc} and \ac{ips}, among others. The dimensions proposed, enough to distinguish the two task groups, were the following:
-    \begin{enumerate}
-        \item \textit{Interval size}. Long intervals tend to require cognitively controlled timing.
-        \item \textit{Presence of movement}. Movement eases the use of automatic systems for timing.
-        \item \textit{Continuity/predictability}. When intervals are measured in a repeating cycle or in a predictable pattern, less            attention is required by the task and thus it may be tackled by the automatic system.
-    \end{enumerate}
-    The dimensions they proposed map almost fully into those recently proposed by Buonomano, with the major distinction being that they propose a principal component of variation, from automatic to cognitively controlled. 
-    
-    \begin{figure}
-        \centering
-        % \includegraphics{}
-        \caption{Automaticity as a composite dimension.}
-        \label{fig:automaticity}
-    \end{figure}
-    
-    % \Paragraph Explain mapping between dimensions
-    
-    % \Paragraph Why it is important to distinguish mechanisms
-    
-    % \Paragraph importance of learning
-    % how our understanding of learning may increase our caspacity to taxonomy timing?
 
-    % maybe 
 
 \section{The anatomy of timing}
 \label{sub:anatomy}
@@ -88,7 +65,6 @@
     % TODO functions
         The medial prefrontal cortex has been implicated in Timing in multiple tasks, such as Reaction Time \cite{narayanan2009delay}, Differential Reinforcement of Low rate \cite{cho2010differential} Temporal Bisection \cite{kim2009inactivation,tiganj2016sequential,kim2013neural}, and Peak Procedure \cite{buhusi2018inactivation}, by distinct methods such as lesions \cite{cho2010differential}, inactivation by muscimol \cite{buhusi2018inactivation, kim2009inactivation}, and optogenetic stimulation \cite{kim2017optogenetic}.
     % TODO timing
-        
         
     \subsection{Striatum}
     % TODO anatomy
