@@ -1,29 +1,27 @@
-\chapter{When time is the essence}
+\chapter{When time is of the essence}
+    When time is crucial for optimal behavior, animals must make use of some internal representation of it to guide their actions. Because time is an implicit variable in perception, computations are needed to abstract time from series of static perceptions, movements, memories, or anything else that may serve this purpose. A common set of calculations and respective mechanisms are used by the nervous system to guide temporal behavior and seems to be consistent between humans and other animals. The recruited mechanisms are dependent on the magnitude of the time interval under consideration, and possibly on other characteristics of the task. To unravel these mechanisms, many behavioral tasks have been developed by the timing community.
 
-When time is the essence for optimal behavior, animals must make use of some inner representation to behave. Because time is an implicit variable in perception, computations are needed to abstract time from series of static perceptions, movements, memories, or anything else that may serve this purpose. A common set of computations and respective mechanisms are used by the nervous system to guide temporal behavior, and seems to be consistent between humans and mice. The recruited mechanisms are dependent on the size of the time interval under consideration, and possibly on other characteristics of the task. To unravel these mechanisms, many tasks have been developed by the timing community.
-
-To make sense of results in a wide range of tasks, there are various cognitive models for timing learning and performance, but although they make assumptions about learning, they are commonly assessed only via proficient behavior, due to difficulties in recording animals through the learning process. Our group developed a variant of DRRD task, in which animals learn in the course of a single session, and recorded neural activity in two regions associated with timing in the recent literature: the medial Pre Frontal Cortex (mPFC) and the Striatum (STR). We aim to shed some light into the process of learning to time by studying how time representations develop in these areas.
-
-We found that, from the onset of training, there is activity at the mPFC consistent with time representation. This representation weakens in trained animals, a result consistent across two groups of animals from distinct laboratories. In the opposite direction, STR has no detectable representation of time at the beginning of training, but features this representation after training. This results can be seen in figure \ref{fig:time_representation_str_pfc}, where decoding performance is used as a surrogate for time representation.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{figures/pearson_comparison_before_after_learning.png}
-    \caption[Comparison of classifier performances in distinct learning stages, by Pearson Correlation]{Comparison of classifier performances in distinct learning stages, by Pearson Correlation. Left: Group 1 at first half vs second half of session. Right: Group 2, in the first vs the second smaller sessions. In the vertical, we show the performance of the classifier as measured by Pearson's r. Values shown in the vertical axes correspond to the mean values of data points, shown as circles. The analysis was repeated 100 times, and error bars correspond to the confidence intervals of 95\% calculated by 1000 bootstrap averages of 100 samples with replacement.}
-    \label{fig:time_representation_str_pfc}
-\end{figure}
-
-We discuss how this results relate to the already established Dual Process framework for learning.
-
-
-This work has three kinds of contribution: 
-\begin{enumerate}
-    \item Methodology: We provide rationale for method choices, grounded on comparisons made available in the corresponding chapters. 
+    To make sense of results in a wide range of tasks, there are various cognitive models for timing learning and performance. Even though they make assumptions about learning, they are commonly assessed only via proficient behavior, i.e. well trained subjects, due to difficulties in recording animals during the learning process. Our group developed a variant of Differential Reinforcement of Response Duration (DRRD) task, in which animals learn in the course of a single session. They recorded neural activity in two regions associated with interval timing in the recent literature: the medial Prefrontal Cortex (mPFC) and the Striatum (STR). 
     
-    \item Results: Analysis applied to data from our research group, giving results such as the central one aforementioned, are thorougly discussed.
+    Here we aimed to shed some light into the process of time learning by studying how time representations develop in these areas by using a machine learning approach. We found that, from the onset of training, there is activity at the mPFC consistent with time representation. This representation weakens in trained animals, a result consistent across two groups of animals from distinct laboratories. In the opposite direction, STR has no detectable representation of time at the beginning of training, but features this representation after training. This results can be seen in figure \ref{fig:time_representation_str_pfc}, where decoding performance is used as a surrogate for time representation.
     
-    \item Theory: Contemporary discussions from relevant areas are brought in, and the work contextualized in multiple levels.
-\end{enumerate}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pearson_comparison_before_after_learning.png}
+        \caption[Comparison of classifier performances in distinct learning stages, by Pearson Correlation]{Comparison of classifier performances in distinct learning stages, by Pearson Correlation. Left: Group 1 at first half vs second half of session. Right: Group 2, in the first vs the second smaller sessions. In the vertical, we show the performance of the classifier as measured by Pearson's r. Values shown in the vertical axes correspond to the mean values of data points, shown as circles. The analysis was repeated 100 times, and error bars correspond to the confidence intervals of 95\% calculated by 1000 bootstrap averages of 100 samples with replacement.}
+        \label{fig:time_representation_str_pfc}
+    \end{figure}
+    
+    We discuss how this results relate to the already established Dual Process framework for learning.
+
+    This work has three kinds of contribution: 
+    \begin{enumerate}
+        \item Methodology: We provide rationale for method choices, grounded on comparisons made available in the corresponding chapters. 
+        
+        \item Results: Analysis applied to data from our research group, giving results such as the central one aforementioned, are thorougly discussed.
+        
+        \item Theory: Contemporary discussions from relevant areas are brought in, and the work contextualized in multiple levels.
+    \end{enumerate}
 
 
 % 1 paragraph discussion

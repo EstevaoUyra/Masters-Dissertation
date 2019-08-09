@@ -30,13 +30,14 @@
 
 \ProcessOptions\relax
 
+
 % Line Spacing
 %   Define two line spacings: one for the body, and one that is more compressed.
 \iftoggle{DissertateSingleSpace}{
     \newcommand{\dnormalspacing}{1.2}
     \newcommand{\dcompressedspacing}{1.0}
 }{
-    \newcommand{\dnormalspacing}{2.0}
+    \newcommand{\dnormalspacing}{1.5} %2.0
     \newcommand{\dcompressedspacing}{1.2}
 }
 
@@ -197,6 +198,7 @@
 \def\pdTwoName#1{\gdef\@pdTwoName{#1}}
 \def\pdTwoSchool#1{\gdef\@pdTwoSchool{#1}}
 \def\pdTwoYear#1{\gdef\@pdTwoYear{#1}}
+\def\pttitle#1{\gdef\@pttitle{#1}}
 % School name and location
 
 \university{Universidade Federal do ABC}
@@ -242,7 +244,7 @@
 	\Huge \textcolor{SchoolColor}{\thetitle} \normalsize \\
 	\vspace{100pt}
 	\textsc{a dissertation presented \\ by\\
-	\theauthor\\ to\\ The Department of \@department\\
+	\theauthor\\ to\\ The Graduate Program in \@department\\
 	\vspace{12pt}
 	in partial fulfillment of the requirements\\
 	for the degree of\\ \@degree\\
@@ -280,6 +282,26 @@
 	\end{center}
     \begin{spacing}{\dnormalspacing}
     	\input{frontmatter/abstract}
+    \end{spacing}
+	\vspace*{\fill}
+	\newpage \lhead{} \rhead{}
+	\cfoot{\thepage}
+	
+    \pdfbookmark{Resumo}{Resumo}
+	\newpage
+	\pagenumbering{roman}
+	\setcounter{page}{4}
+	\pagestyle{fancy}
+	\lhead{Orientador: Professor \@advisor} \rhead{\@author}
+	\renewcommand{\headrulewidth}{0.0pt}
+	\vspace*{35pt}
+	\begin{center}
+    	\Large \textcolor{SchoolColor}{\@pttitle} \normalsize \\
+    	\vspace*{20pt}
+    	\scshape Resumo \\ \rm
+	\end{center}
+    \begin{spacing}{\dnormalspacing}
+    	\input{frontmatter/resumo}
     \end{spacing}
 	\vspace*{\fill}
 	\newpage \lhead{} \rhead{}

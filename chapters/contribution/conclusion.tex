@@ -1,10 +1,19 @@
 % The most common reaction of the human mind to achievement is not satisfaction, but craving for more.
 
+% “It turns out that an eerie type of chaos can lurk just behind a facade of order - and yet, deep inside the chaos lurks an even eerier type of order.” 
+% ― Douglas R. Hofstadter
+
 \chapter{Conclusion}
 \label{chap:conclusion}
 
+In this work we studied time learning using the modern techniques of machine learning, and tried to understand our findings of timing in relation to a wider literature of learning.
 
-\section{Future work}
-\label{sec:future}
+With respect to our methodology, we found that a simple classifier and a simple regressor are well suited to analysis of this kind, respectively Linear Discriminant Analysis and Bayesian Ridge. We found that classifiers and regressors both capture information contained in the neural activity, and it is hard to pinpoint whether biases in the decoding performance at each timepoint are a feature of the activity at that point or of the choice of algorithm. We also found that, as important as the specific choice of metric, is to compare results with bootstrapped data. Else, we could have found that the negative explained variance in the classifiers meant that they could not capture information in the activity, before comparing with the performance of the bootstrapped and seeing that it was even more negative.
 
-To better understand learning of our DRRD task, we plan to dive deeper into behavior analysis, by studying animals' behavior through the Reinforcement Learning paradigm \cite{niv2016reinforcement}.
+With respect to the theoretical consequences, our findings have been discussed through the lens of instrumental learning, and through the lens of timing. The dependency changes can be understood in the former, and we found no specific accounts in the latter. This may be due to the difficulty to assess the neural activity during learning, in timing tasks. In any way, the setting provided by the DRRD task envisioned by our group has enabled a fruitful discussion, that may facilitate linking between the areas of timing and learning.
+
+We present a hypothesis that timing behavior and learning is subject to dual-processes, and is thus a particular case of instrumental learning. This seems a parsimonious account (because why would timing be different from other conditioning procedures), but until now has found no place in the usual models of timing. Within this account, in addition to the regional dependencies, habitual behavior is resistant to change, while goal-directed behavior is flexible and sensitive to reward devaluation. Hence, our hypothesis comes with clear predictions that can be tested, pointedly that overtraining animals in timing tasks should make the animals resistant to reward devaluations, even when the animal is flexible to these changes earlier during training. 
+% \section{Future work}
+% \label{sec:future}
+
+% To better understand learning of our DRRD task, we plan to dive deeper into behavior analysis, by studying animals' behavior through the Reinforcement Learning paradigm \cite{niv2016reinforcement}.

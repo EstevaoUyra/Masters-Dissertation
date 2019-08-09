@@ -1,0 +1,12 @@
+% How does the neural activity changes with learning is still an open question, and methods that enable this question to be posed in a systematic manner are currently in development. To avoid biasing our analysis with motor activity we epoched data before estimating the firing rate, and had to choose appropriate methods to padding the timeseries in order to keep the borders. 
+
+% Analysis of Mahalanobis similarity in the neural activity didn't show huge effects at these borders, and we kept our analysis with the firing rates. 
+
+
+
+
+
+    
+    % Calculating the similarity matrix using Mahalanobis distances has some benefits in comparison to using classifiers. Firstly, it is gives a much more direct measure of distance, due to its simplicity. Secondly, it doesn't interferes on information about two timepoints because of a third one, a feature of classifier's probability matrices. On the other hand, since it uses all dimensions to calculate the distance, it is more prone to confounding effects due to multiplexing \cite{gu2015oscillatory}. The similarity matrix can nevertheless be used as a tool for assessing the data and preprocessing steps, before going on to more powerful analysis. In figure \ref{fig:mahalanobis_smoothing}, we saw that without smoothing, there doesn't seem to be any consistent activity in subject 10 when we use a time window of 10ms, but there surely is in the 100ms window. This points out that signal-to-noise ratio is too low in the former case, and that we should use the bigger window instead. % It is also possible to see the similarity near the borders increases specially when the smoothing is larger, which may signal to an artifact of the smoothing process.
+    
+
